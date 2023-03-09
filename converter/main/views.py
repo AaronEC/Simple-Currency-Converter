@@ -1,5 +1,6 @@
 import json
 import os
+from django.forms import ValidationError
 import requests
 
 from django.shortcuts import render
@@ -45,14 +46,12 @@ def index(request):
             'input': input,
             'amount': amount,
             'currency': currency(),
-            'form': InputForm(initial={'input_field': amount})
+            'form': InputForm(initial={'input_field': amount}),
         }
         
         return render(request, "index.html", context)
-        
-    form = InputForm(initial={'input_field': 50})
-        
     
+    # Initial default values
     context = {
         'currency': currency(),
         'input': 'USD',     # These are the defaults
