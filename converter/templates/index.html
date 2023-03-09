@@ -1,0 +1,96 @@
+{% load static %}
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Currency converter</title>
+</head>
+
+<body>
+
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+        <h3>Currency Converter</h3>
+        <p class="blue-text">Powerful Yet Simple</p>
+        
+        <div class="card">
+            
+            <h5 class="text-center mb-4">Please Input Your Request</h5>
+
+            <form method="post" action="{% url 'index' %}">
+            {% csrf_token %}
+
+            <!-- Currency input -->
+            <input class="form-control text-center" name="amount" id="amount" type="text" placeholder="Enter amount to convert">
+            <small class="form-text text-muted">
+                Numbers only (e.g. 0.00)
+                </small>
+
+            <!-- From options -->
+            <label for="input">From:</label>
+            <select id="input" name="input" class="select form-control text-center">
+                {% for c in currency %}
+                <option value="{{c.cc}}">{{c.cc}} - {{c.name}}</option>
+                {% endfor %}
+            </select>
+            
+            <!-- To options -->
+            <label for="output">To:</label>
+            <select id="output" name="output" class="select form-control text-center">
+                {% for c in currency %}
+                <option value="{{c.cc}}">{{c.cc}} - {{c.name}}</option>
+                {% endfor %}
+            </select>
+            
+            <input class="btn btn-primary btn-block" type="submit" value="Convert">
+
+            <!-- Converter result -->
+            <h2>{{ result }} {{ converted }}</h2>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% comment %} 
+<div class="container text-center align-middle">
+    <div class="col-md-auto">
+    <h1>Currency Converter</h1>
+        <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <!-- Currency input -->
+        <div class="select-text">
+            <input  name="amount" type="text">
+        </div>
+    <br>
+ 
+ <div class="select-wrapper">
+    <!-- From options -->
+    <select name="currency_from" class="select">
+       {% for c in currency_data %}
+       <option value="{{c.cc}}">{{c.name}}</option>
+       {% endfor %}
+    </select>
+ </div>
+ <br>
+ <div class="select-wrapper">
+    <!-- To options -->
+    <select name="currency_to" class="select">
+       {% for c in currency_data %}
+       <option value="{{c.cc}}">{{c.name}}</option>
+       {% endfor %}
+    </select>
+ </div>
+ <br>
+ <div class="select-submit">
+    <input class="btn btn-primary" type="submit" value="Convert">
+ </div>
+ <!-- Converter result -->
+ <h2>{{ result }} {{ currency_to }}</h2>
+</div>
+</div> 
+{% endcomment %}
