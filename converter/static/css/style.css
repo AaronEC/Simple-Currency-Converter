@@ -1,13 +1,13 @@
-body{
+body {
   color: #000;
   overflow-x: hidden;
   height: 100%;
-  background-color: #e8f5f7;
+  background-color: #eaf2f3;
   background-repeat: no-repeat;
   background-size: 100% 100%
 }
   
-.card{
+.card {
   padding: 30px 40px;
   margin-top: 60px;
   margin-bottom: 60px;
@@ -15,7 +15,36 @@ body{
   box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2)
 }
   
-.blue-text{
+.blue-text {
   color: #00464f
 }
 
+label {
+  margin-top: 4%;
+}
+
+/* CSS For the input form */
+#id_input_field {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  text-align: center;
+}
+
+/* Some Bootstrap color overrides to enhance our color scheme */
+.btn-primary {
+  background-color: #7380f7 !important;
+}
+
+.btn-primary:hover {
+  background-color: #4b5bf3 !important;
+}
