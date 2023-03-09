@@ -26,7 +26,6 @@
             <h5 class="text-center mb-4">Please Input Your Request</h5>
 
             <form method="post" action="{% url 'index' %}">
-            {% csrf_token %}
 
             <!-- Currency input -->
             {{ form.input_field }}
