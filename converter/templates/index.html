@@ -1,8 +1,14 @@
 {% load static %}
 
+<!DOCTYPE html>
 <html>
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Currency converter</title>
 </head>
@@ -23,16 +29,16 @@
             {% csrf_token %}
 
             <!-- Currency input -->
-            <input class="form-control text-center" name="amount" id="amount" type="text" placeholder="Enter amount to convert">
+            {{ form.input_field }}
             <small class="form-text text-muted">
-                Numbers only (e.g. 0.00)
-                </small>
+                Numbers only (e.g. 12.34)
+            </small>
 
             <!-- From options -->
             <label for="input">From:</label>
             <select id="input" name="input" class="select form-control text-center">
                 {% for c in currency %}
-                <option value="{{c.cc}}">{{c.cc}} - {{c.name}}</option>
+                <option value="{{ c.cc }}" {% if c.cc == input %}selected{% endif %}>{{c.cc}} - {{c.name}}</option>
                 {% endfor %}
             </select>
             
@@ -40,14 +46,15 @@
             <label for="output">To:</label>
             <select id="output" name="output" class="select form-control text-center">
                 {% for c in currency %}
-                <option value="{{c.cc}}">{{c.cc}} - {{c.name}}</option>
+                <option value="{{ c.cc }}" {% if c.cc == output %}selected{% endif %}>{{c.cc}} - {{c.name}}</option>
                 {% endfor %}
             </select>
+
+            <label for="result">Result:</label>
+            <!-- Converter result -->
+            <p class="form-control text-center" name="result" id="result" type="text">{{ converted }}</p>
             
             <input class="btn btn-primary btn-block" type="submit" value="Convert">
-
-            <!-- Converter result -->
-            <h2>{{ result }} {{ converted }}</h2>
 
         </div>
     </div>
